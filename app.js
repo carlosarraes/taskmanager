@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const tasks = require('./routes/tasks');
 const connectDB = require('./db/connect');
+const errorHandler = require('./middleware/error')
 require('dotenv').config();
 
 const PORT = 3000;
@@ -10,6 +11,7 @@ const PORT = 3000;
 //* Middleware
 app.use(express.static('./public'));
 app.use(express.json());
+app.use(errorHandler);
 
 //? Routes
 app.use('/api/v1/tasks', tasks);
